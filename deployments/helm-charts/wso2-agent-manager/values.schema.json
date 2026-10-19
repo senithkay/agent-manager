@@ -901,6 +901,12 @@
               "title": "isOnPremDeployment",
               "type": "string"
             },
+            "enableEnvironmentManagedMode": {
+              "default": false,
+              "description": "When true, environment create, update and delete are refused with 403, for deployments where environments are managed outside Agent Manager.",
+              "title": "enableEnvironmentManagedMode",
+              "type": "boolean"
+            },
             "oidc": {
               "additionalProperties": false,
               "description": "OIDC configuration for Thunder integration",
@@ -1877,6 +1883,12 @@
               "description": "Serve the console over HTTPS.",
               "title": "tlsEnabled",
               "type": "string"
+            },
+            "enableEnvironmentManagedMode": {
+              "default": false,
+              "description": "When true, the Environments pages are hidden, for deployments where environments are managed outside Agent Manager. Set agentManagerService.config.enableEnvironmentManagedMode to match.",
+              "title": "enableEnvironmentManagedMode",
+              "type": "boolean"
             },
             "maxRequestBodyBytes": {
               "default": 0,

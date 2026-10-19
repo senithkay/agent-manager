@@ -49,7 +49,10 @@ import {
   useLocation,
   useParams,
 } from "react-router-dom";
-import { absoluteRouteMap } from "@agent-management-platform/types";
+import {
+  absoluteRouteMap,
+  isEnvironmentManagedMode,
+} from "@agent-management-platform/types";
 import {
   useGetAgent,
   useTokenScopes,
@@ -912,16 +915,23 @@ export function useNavigationItems(): Array<
                   href: generatePath(gatewaysOrgRoute.path, { orgId }),
                   isActive: !!matchPath(gatewaysOrgRoute.wildPath, pathname),
                 },
-                {
-                  label: "Environments",
-                  type: "item" as const,
-                  icon: <Layers size={20} />,
-                  href: generatePath(environmentsOrgRoute.path, { orgId }),
-                  isActive: !!matchPath(
-                    environmentsOrgRoute.wildPath,
-                    pathname,
-                  ),
-                },
+                // Environments are managed outside Agent Manager in environment managed mode.
+                ...(isEnvironmentManagedMode()
+                  ? []
+                  : [
+                      {
+                        label: "Environments",
+                        type: "item" as const,
+                        icon: <Layers size={20} />,
+                        href: generatePath(environmentsOrgRoute.path, {
+                          orgId,
+                        }),
+                        isActive: !!matchPath(
+                          environmentsOrgRoute.wildPath,
+                          pathname,
+                        ),
+                      },
+                    ]),
                 {
                   label: "Deployment Pipelines",
                   type: "item" as const,

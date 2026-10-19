@@ -97,6 +97,12 @@ export interface AppConfig {
    * provisions the matching scheme.
    */
   tlsEnabled?: boolean;
+  /**
+   * When true, the Environments pages are hidden: environments are managed outside
+   * Agent Manager. Mirrors the backend's ENABLE_ENVIRONMENT_MANAGED_MODE. Read it
+   * through isEnvironmentManagedMode().
+   */
+  environmentManagedMode?: boolean;
   guardrailsCatalogUrl: string;
   guardrailsDefinitionBaseUrl: string;
   /**
@@ -211,6 +217,9 @@ export const stripBasePath = (pathname: string): string => {
   if (pathname === base) return "/";
   return pathname.startsWith(`${base}/`) ? pathname.slice(base.length) : pathname;
 };
+
+/** True when environments are managed outside Agent Manager (ENABLE_ENVIRONMENT_MANAGED_MODE). */
+export const isEnvironmentManagedMode = (): boolean => globalConfig.environmentManagedMode === true;
 
 const buildRange = (duration: Duration) => {
   const endTime = new Date();

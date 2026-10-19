@@ -81,6 +81,7 @@ window.__RUNTIME_CONFIG__ = {
   agentManagerInternalCpHost: '$AGENT_MANAGER_INTERNAL_CP_HOST',
   idpHostBaseDomain: '$IDP_HOST_BASE_DOMAIN',
   tlsEnabled: '$TLS_ENABLED' === 'true',
+  environmentManagedMode: '$ENABLE_ENVIRONMENT_MANAGED_MODE' === 'true',
   guardrailsCatalogUrl: '$GUARDRAILS_CATALOG_URL',
   guardrailsDefinitionBaseUrl: '$GUARDRAILS_DEFINITION_BASE_URL',
   guardrailCapabilities: {

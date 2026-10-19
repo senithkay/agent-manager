@@ -75,6 +75,7 @@ import {
   relativeRouteMap,
   absoluteRouteMap,
   getBasePath,
+  isEnvironmentManagedMode,
 } from "@agent-management-platform/types";
 import {
   useExternalPageModules,
@@ -297,12 +298,16 @@ export function RootRouter() {
               }
               element={<LazyDeploymentPipelinesOrg />}
             />
-            <Route
-              path={
-                relativeRouteMap.children.org.children.environments.path + "/*"
-              }
-              element={<LazyEnvironmentsOrg />}
-            />
+            {/* Environments are managed outside Agent Manager in environment managed mode. */}
+            {!isEnvironmentManagedMode() && (
+              <Route
+                path={
+                  relativeRouteMap.children.org.children.environments.path +
+                  "/*"
+                }
+                element={<LazyEnvironmentsOrg />}
+              />
+            )}
             <Route
               path={
                 relativeRouteMap.children.org.children.llmProviders.path + "/*"

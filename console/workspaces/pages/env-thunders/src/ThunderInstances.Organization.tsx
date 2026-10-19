@@ -18,7 +18,7 @@
 
 import React from "react";
 import { Navigate, Route, Routes, generatePath, useParams } from "react-router-dom";
-import { absoluteRouteMap } from "@agent-management-platform/types";
+import { absoluteRouteMap, isEnvironmentManagedMode } from "@agent-management-platform/types";
 import { AgentIdentityEnvironmentProvider } from "./context/AgentIdentityEnvironmentContext";
 import { AgentsOrganization } from "./AgentsOrganization";
 import { RolesOrganization } from "./RolesOrganization";
@@ -47,6 +47,13 @@ function LegacyThunderInstanceViewRedirect() {
     return <Navigate to={`${target}?envName=${encodeURIComponent(envName ?? "")}`} replace />;
   }
 
+  // The environment overview is hidden in environment managed mode, so its old links land on
+  // that environment's agents page instead.
+  if (isEnvironmentManagedMode()) {
+    const base = generatePath(thunderInstancesNode.children.agents.path, { orgId });
+    return <Navigate to={`${base}?envName=${encodeURIComponent(envName ?? "")}`} replace />;
+  }
+
   return (
     <Navigate
       to={generatePath(
@@ -73,7 +80,9 @@ export const ThunderInstancesOrganization: React.FC = () => {
           element={
             <Navigate
               to={generatePath(
-                absoluteRouteMap.children.org.children.environments.path,
+                isEnvironmentManagedMode()
+                  ? thunderInstancesNode.children.agents.path
+                  : absoluteRouteMap.children.org.children.environments.path,
                 { orgId },
               )}
               replace

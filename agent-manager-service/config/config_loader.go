@@ -168,6 +168,7 @@ func loadEnvs() {
 		JWKSUrl:  r.readOptionalString("KEY_MANAGER_JWKS_URL", ""),
 	}
 	config.IsOnPremDeployment = r.readOptionalBool("IS_ON_PREM_DEPLOYMENT", true)
+	config.EnableEnvironmentManagedMode = r.readOptionalBool("ENABLE_ENVIRONMENT_MANAGED_MODE", false)
 	config.ServerPublicURL = r.readOptionalString("SERVER_PUBLIC_URL", "")
 	config.GrowthAnalytics = GrowthAnalyticsConfig{
 		Enabled:                   r.readOptionalBool("MOESIF_ENABLED", false),
