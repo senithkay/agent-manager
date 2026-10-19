@@ -292,7 +292,6 @@ export function RootRouter() {
             />
             {/* Back-compat: identities pages moved under Settings → IDP Settings */}
             <Route path="identities/*" element={<LegacyIdentitiesRedirect />} />
-            {/* Pipelines are managed outside Agent Manager in deployment pipeline managed mode. */}
             {!isDeploymentPipelineManagedMode() && (
               <Route
                 path={
@@ -302,7 +301,6 @@ export function RootRouter() {
                 element={<LazyDeploymentPipelinesOrg />}
               />
             )}
-            {/* Environments are managed outside Agent Manager in environment managed mode. */}
             {!isEnvironmentManagedMode() && (
               <Route
                 path={

@@ -287,12 +287,14 @@ agentManagerService:
     # On-premise deployment flag
     isOnPremDeployment: "true"
 
-    # When true, environment create, update and delete are refused with 403, for
-    # deployments where environments are managed outside Agent Manager.
+    # When true, environment create, update and delete are refused with 403 and the
+    # console hides the Environments pages, for deployments where environments are
+    # managed outside Agent Manager. The console reads this same value.
     enableEnvironmentManagedMode: false
 
-    # When true, deployment pipeline create, update and delete are refused with 403,
-    # for deployments where pipelines are managed outside Agent Manager.
+    # When true, deployment pipeline create, update and delete are refused with 403
+    # and the console hides the Deployment Pipelines pages, for deployments where
+    # pipelines are managed outside Agent Manager. The console reads this same value.
     enableDeploymentPipelineManagedMode: false
 
     # OIDC configuration for Thunder integration
@@ -587,14 +589,6 @@ console:
     # override both (see deployments/vm/lib-vm.sh).
     idpHostBaseDomain: "amp.localhost"
     tlsEnabled: "false"
-    # When true, the Environments pages are hidden, for deployments where
-    # environments are managed outside Agent Manager. Set
-    # agentManagerService.config.enableEnvironmentManagedMode to match.
-    enableEnvironmentManagedMode: false
-    # When true, the Deployment Pipelines pages are hidden, for deployments where
-    # pipelines are managed outside Agent Manager. Set
-    # agentManagerService.config.enableDeploymentPipelineManagedMode to match.
-    enableDeploymentPipelineManagedMode: false
     # Largest request body, in bytes, the console sends on a save. 0 means no
     # limit (the default). Set it on deployments behind a WAF that rejects bigger
     # bodies with an opaque 403, e.g. 57344 (56 KB) under a 64 KB WAF limit, so

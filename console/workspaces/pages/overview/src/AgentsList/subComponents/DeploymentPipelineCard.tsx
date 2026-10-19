@@ -175,7 +175,6 @@ export function DeploymentPipelineCard() {
 
               <Box display="flex" flexWrap="wrap" alignItems="center" gap={0.75}>
                 <PromotionChainChips chain={promotionChain} envMap={envMap} />
-                {/* The pipeline edit page is hidden in deployment pipeline managed mode. */}
                 {!isDeploymentPipelineManagedMode() && (
                   <Tooltip title="Edit Promotion Chain">
                     <Button

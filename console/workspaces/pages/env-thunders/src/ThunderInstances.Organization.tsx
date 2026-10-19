@@ -47,8 +47,6 @@ function LegacyThunderInstanceViewRedirect() {
     return <Navigate to={`${target}?envName=${encodeURIComponent(envName ?? "")}`} replace />;
   }
 
-  // The environment overview is hidden in environment managed mode, so its old links land on
-  // that environment's agents page instead.
   if (isEnvironmentManagedMode()) {
     const base = generatePath(thunderInstancesNode.children.agents.path, { orgId });
     return <Navigate to={`${base}?envName=${encodeURIComponent(envName ?? "")}`} replace />;

@@ -916,7 +916,6 @@ export function useNavigationItems(): Array<
                   href: generatePath(gatewaysOrgRoute.path, { orgId }),
                   isActive: !!matchPath(gatewaysOrgRoute.wildPath, pathname),
                 },
-                // Environments are managed outside Agent Manager in environment managed mode.
                 ...(isEnvironmentManagedMode()
                   ? []
                   : [
@@ -933,7 +932,6 @@ export function useNavigationItems(): Array<
                         ),
                       },
                     ]),
-                // Pipelines are managed outside Agent Manager in deployment pipeline managed mode.
                 ...(isDeploymentPipelineManagedMode()
                   ? []
                   : [
