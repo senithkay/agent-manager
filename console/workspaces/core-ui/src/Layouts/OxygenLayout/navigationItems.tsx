@@ -52,6 +52,7 @@ import {
 import {
   absoluteRouteMap,
   isEnvironmentManagedMode,
+  isDeploymentPipelineManagedMode,
 } from "@agent-management-platform/types";
 import {
   useGetAgent,
@@ -932,18 +933,23 @@ export function useNavigationItems(): Array<
                         ),
                       },
                     ]),
-                {
-                  label: "Deployment Pipelines",
-                  type: "item" as const,
-                  icon: <Workflow size={20} />,
-                  href: generatePath(deploymentPipelinesOrgRoute.path, {
-                    orgId,
-                  }),
-                  isActive: !!matchPath(
-                    deploymentPipelinesOrgRoute.wildPath,
-                    pathname,
-                  ),
-                },
+                // Pipelines are managed outside Agent Manager in deployment pipeline managed mode.
+                ...(isDeploymentPipelineManagedMode()
+                  ? []
+                  : [
+                      {
+                        label: "Deployment Pipelines",
+                        type: "item" as const,
+                        icon: <Workflow size={20} />,
+                        href: generatePath(deploymentPipelinesOrgRoute.path, {
+                          orgId,
+                        }),
+                        isActive: !!matchPath(
+                          deploymentPipelinesOrgRoute.wildPath,
+                          pathname,
+                        ),
+                      },
+                    ]),
               ],
             },
           ]

@@ -907,6 +907,12 @@
               "title": "enableEnvironmentManagedMode",
               "type": "boolean"
             },
+            "enableDeploymentPipelineManagedMode": {
+              "default": false,
+              "description": "When true, deployment pipeline create, update and delete are refused with 403, for deployments where pipelines are managed outside Agent Manager.",
+              "title": "enableDeploymentPipelineManagedMode",
+              "type": "boolean"
+            },
             "oidc": {
               "additionalProperties": false,
               "description": "OIDC configuration for Thunder integration",
@@ -1888,6 +1894,12 @@
               "default": false,
               "description": "When true, the Environments pages are hidden, for deployments where environments are managed outside Agent Manager. Set agentManagerService.config.enableEnvironmentManagedMode to match.",
               "title": "enableEnvironmentManagedMode",
+              "type": "boolean"
+            },
+            "enableDeploymentPipelineManagedMode": {
+              "default": false,
+              "description": "When true, the Deployment Pipelines pages are hidden, for deployments where pipelines are managed outside Agent Manager. Set agentManagerService.config.enableDeploymentPipelineManagedMode to match.",
+              "title": "enableDeploymentPipelineManagedMode",
               "type": "boolean"
             },
             "maxRequestBodyBytes": {

@@ -169,6 +169,7 @@ func loadEnvs() {
 	}
 	config.IsOnPremDeployment = r.readOptionalBool("IS_ON_PREM_DEPLOYMENT", true)
 	config.EnableEnvironmentManagedMode = r.readOptionalBool("ENABLE_ENVIRONMENT_MANAGED_MODE", false)
+	config.EnableDeploymentPipelineManagedMode = r.readOptionalBool("ENABLE_DEPLOYMENT_PIPELINE_MANAGED_MODE", false)
 	config.ServerPublicURL = r.readOptionalString("SERVER_PUBLIC_URL", "")
 	config.GrowthAnalytics = GrowthAnalyticsConfig{
 		Enabled:                   r.readOptionalBool("MOESIF_ENABLED", false),

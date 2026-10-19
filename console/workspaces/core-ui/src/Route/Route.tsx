@@ -76,6 +76,7 @@ import {
   absoluteRouteMap,
   getBasePath,
   isEnvironmentManagedMode,
+  isDeploymentPipelineManagedMode,
 } from "@agent-management-platform/types";
 import {
   useExternalPageModules,
@@ -291,13 +292,16 @@ export function RootRouter() {
             />
             {/* Back-compat: identities pages moved under Settings → IDP Settings */}
             <Route path="identities/*" element={<LegacyIdentitiesRedirect />} />
-            <Route
-              path={
-                relativeRouteMap.children.org.children.deploymentPipelines
-                  .path + "/*"
-              }
-              element={<LazyDeploymentPipelinesOrg />}
-            />
+            {/* Pipelines are managed outside Agent Manager in deployment pipeline managed mode. */}
+            {!isDeploymentPipelineManagedMode() && (
+              <Route
+                path={
+                  relativeRouteMap.children.org.children.deploymentPipelines
+                    .path + "/*"
+                }
+                element={<LazyDeploymentPipelinesOrg />}
+              />
+            )}
             {/* Environments are managed outside Agent Manager in environment managed mode. */}
             {!isEnvironmentManagedMode() && (
               <Route

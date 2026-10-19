@@ -49,6 +49,8 @@ data:
   TLS_ENABLED: {{ .Values.console.config.tlsEnabled | default "false" | quote }}
   # Hides the Environments pages when environments are managed outside Agent Manager.
   ENABLE_ENVIRONMENT_MANAGED_MODE: {{ .Values.console.config.enableEnvironmentManagedMode | default false | quote }}
+  # Hides the Deployment Pipelines pages when pipelines are managed outside Agent Manager.
+  ENABLE_DEPLOYMENT_PIPELINE_MANAGED_MODE: {{ .Values.console.config.enableDeploymentPipelineManagedMode | default false | quote }}
   # Request and file-mount size limits in bytes. `dig`, not `default`, for the
   # body limit: 0 is a real setting (no limit) and `default` would replace it.
   # `int` because Helm reads YAML numbers as floats and `quote` would render

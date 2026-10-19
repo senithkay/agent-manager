@@ -291,6 +291,10 @@ agentManagerService:
     # deployments where environments are managed outside Agent Manager.
     enableEnvironmentManagedMode: false
 
+    # When true, deployment pipeline create, update and delete are refused with 403,
+    # for deployments where pipelines are managed outside Agent Manager.
+    enableDeploymentPipelineManagedMode: false
+
     # OIDC configuration for Thunder integration
     oidc:
       tokenUrl: "http://amp-thunder-extension-service.amp-thunder.svc.cluster.local:8090/oauth2/token"
@@ -587,6 +591,10 @@ console:
     # environments are managed outside Agent Manager. Set
     # agentManagerService.config.enableEnvironmentManagedMode to match.
     enableEnvironmentManagedMode: false
+    # When true, the Deployment Pipelines pages are hidden, for deployments where
+    # pipelines are managed outside Agent Manager. Set
+    # agentManagerService.config.enableDeploymentPipelineManagedMode to match.
+    enableDeploymentPipelineManagedMode: false
     # Largest request body, in bytes, the console sends on a save. 0 means no
     # limit (the default). Set it on deployments behind a WAF that rejects bigger
     # bodies with an opaque 403, e.g. 57344 (56 KB) under a 64 KB WAF limit, so
